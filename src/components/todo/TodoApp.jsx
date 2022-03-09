@@ -11,6 +11,7 @@ class TodoApp extends Component {
         return (
             <div className="TodoApp">
                 <Router>
+                    <HeaderComponent/> 
                     <Routes>
                         <Route path="/" element={<LoginComponentWithNavigation />} />
                         <Route path="/login" element={<LoginComponentWithNavigation />} />
@@ -18,7 +19,28 @@ class TodoApp extends Component {
                         <Route path="/todos" element={<ListTodosComponent />} />
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
+                    <FooterComponent/>
                 </Router>
+            </div>
+        )
+    }
+}
+
+class HeaderComponent extends Component {
+    render() {
+        return (
+            <div>
+                Header <hr/>
+            </div>
+        )
+    }
+}
+
+class FooterComponent extends Component {
+    render() {
+        return (
+            <div>
+                <hr/>Footer
             </div>
         )
     }
@@ -126,15 +148,15 @@ class ListTodosComponent extends Component {
                 </thead>
                 <tbody>
                     {
-                    this.state.todos.map (
-                        todo =>
-                        <tr>
-                            <td>{todo.id}</td>
-                            <td>{todo.description}</td>
-                            <td>{todo.done.toString()}</td>
-                            <td>{todo.targetDate.toString()}</td>
-                        </tr>
-                    )
+                        this.state.todos.map (
+                            todo =>
+                            <tr>
+                                <td>{todo.id}</td>
+                                <td>{todo.description}</td>
+                                <td>{todo.done.toString()}</td>
+                                <td>{todo.targetDate.toString()}</td>
+                            </tr>
+                        )
                     }
                 </tbody>
             </table>         
