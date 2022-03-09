@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import {BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
 import withNavigation from './WithNavigation'
 import withParams from './WithParams'
 
@@ -133,10 +133,7 @@ class ListTodosComponent extends Component {
                     )
                     }
                 </tbody>
-            </table>
-            
-
-            
+            </table>         
         </div>
         )
     }
@@ -144,7 +141,12 @@ class ListTodosComponent extends Component {
 
 class WelcomeComponent extends Component {
     render() {
-        return <div>Welcome {this.props.params.name}</div>
+        return (
+            <div>
+                Welcome {this.props.params.name}. You can manage your todos <Link to="/todos">here</Link> 
+            </div>
+        )
+
     }
 }
 
