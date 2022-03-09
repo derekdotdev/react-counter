@@ -1,18 +1,20 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import withNavigation from './WithNavigation'
+import withParams from './WithParams'
 
 
 class TodoApp extends Component {
     render() {
         const LoginComponentWithNavigation = withNavigation(LoginComponent)
+        const WelcomeComponentWithParams = withParams(WelcomeComponent)
         return (
             <div className="TodoApp">
                 <Router>
                     <Routes>
                         <Route path="/" element={<LoginComponentWithNavigation />} />
                         <Route path="/login" element={<LoginComponentWithNavigation />} />
-                        <Route path="/welcome" element={<WelcomeComponent />} />
+                        <Route path="/welcome/:name" element={<WelcomeComponentWithParams />} />
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                 </Router>
@@ -63,7 +65,7 @@ class LoginComponent extends Component {
     loginClicked() {
         //derekdotdev,dummy
         if(this.state.username==='derekdotdev' && this.state.password==='dummy') {
-            this.props.navigate(`/welcome`)
+            this.props.navigate(`/welcome/${this.state.username}`)
             // this.setState({showSuccessMessage:true})
             // this.setState({hasLoginFailed:false})
         } else {
@@ -97,7 +99,7 @@ function ErrorComponent() {
 
 class WelcomeComponent extends Component {
     render() {
-        return <div>Welcome derekdotdev</div>
+        return <div>Welcome {this.props.params.name}</div>
     }
 }
 
