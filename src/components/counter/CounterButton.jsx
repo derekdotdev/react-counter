@@ -11,33 +11,33 @@ class CounterButton extends Component {
         super() // Don't forget super()!
         
         // not needed if arrow => employed on function
-        this.increment = this.increment.bind(this)
-        this.decrement = this.decrement.bind(this)
+        // this.increment = this.increment.bind(this)
+        // this.decrement = this.decrement.bind(this)
     }
 
     //render = () => {
     render() {
         return (
             <div className='counter'>
-                <button id='add' onClick={this.increment}>+{this.props.by}</button>
-                <button id='subtract' onClick={this.decrement}>-{this.props.by}</button>
+                <button id='add' onClick={() => this.props.incrementMethod(this.props.by)}>+{this.props.by}</button>
+                <button id='subtract' onClick={() => this.props.decrementMethod(this.props.by)}>-{this.props.by}</button>
                 {/* <span className="count">{this.state.counter}</span> */}
             </div>
         )
     }
 
     //increment = () => {
-    increment() { // Update state - counter++
-        // Update state (lifted up to Counter)
-        // this.setState({
-        //     counter: this.state.counter //+ this.props.by
-        // });
-        this.props.incrementMethod(this.props.by); 
-    }
+    // increment() { // Update state - counter++
+    //     // Update state (lifted up to Counter)
+    //     // this.setState({
+    //     //     counter: this.state.counter //+ this.props.by
+    //     // });
+    //     this.props.incrementMethod(this.props.by); 
+    // }
 
-    decrement() {
-        this.props.decrementMethod(this.props.by);
-    }
+    // decrement() {
+    //     this.props.decrementMethod(this.props.by);
+    // }
 
 }
 

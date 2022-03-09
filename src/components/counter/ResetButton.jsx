@@ -7,20 +7,20 @@ class ResetButton extends Component {
         super() // Don't forget super()!
         
         // not needed if arrow => employed on function
-        this.resetCounter = this.resetCounter.bind(this)
+        // this.resetCounter = this.resetCounter.bind(this)
     }
 
     render() {
         return (
             <div>
-                <button id='reset' onClick={this.resetCounter}>Reset Me</button>
+                <button id='reset' onClick={this.props.resetCounterMethod}>Reset Me</button>
             </div>
         );
     }
 
-    resetCounter() {
-        this.props.resetCounterMethod();
-    }
+    // resetCounter() {
+    //     this.props.resetCounterMethod();
+    // }
 }
 
 export default ResetButton
