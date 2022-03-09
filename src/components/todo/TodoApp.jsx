@@ -13,16 +13,11 @@ class TodoApp extends Component {
                         <Route path="/" element={<LoginComponentWithNavigation />} />
                         <Route path="/login" element={<LoginComponentWithNavigation />} />
                         <Route path="/welcome" element={<WelcomeComponent />} />
+                        <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                 </Router>
             </div>
         )
-    }
-}
-
-class WelcomeComponent extends Component {
-    render() {
-        return <div>Welcome derekdotdev</div>
     }
 }
 
@@ -93,6 +88,17 @@ class LoginComponent extends Component {
         )
     }
 
+}
+
+function ErrorComponent() {
+    return <div>An Error Occurred. I don't know what to do! Contact support at abcd-efgh-ijkl</div>
+}
+
+
+class WelcomeComponent extends Component {
+    render() {
+        return <div>Welcome derekdotdev</div>
+    }
 }
 
 // function ShowInvalidCredentials(props) {
