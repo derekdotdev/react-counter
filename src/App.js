@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
-import logo from './logo.svg';
 import './App.css'
 import FirstComponent from './components/learning-examples/FirstComponent'
 import {SecondComponent} from './components/learning-examples/SecondComponent'
 import TodoApp from './components/todo/TodoApp';
-// import Counter from './components/counter/Counter';
-// note that SecondComponent is not listed as export default
-// therefore, it is necessary to wrap import in curly braces
+
 
 // by = property used for display
 // and increment method
