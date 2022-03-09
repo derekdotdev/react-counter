@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
 import withNavigation from './WithNavigation'
 import withParams from './WithParams'
 import AuthenticationService from './AuthenticationService.js'
+import AuthenticatedRoute from './AuthenticatedRoute'
 
 
 class TodoApp extends Component {
@@ -20,9 +21,27 @@ class TodoApp extends Component {
                     <Routes>
                         <Route path="/" element={<LoginComponentWithNavigation />} />
                         <Route path="/login" element={<LoginComponentWithNavigation />} />
-                        <Route path="/logout" element={<LogoutComponent />} />
-                        <Route path="/welcome/:name" element={<WelcomeComponentWithParams />} />
-                        <Route path="/todos" element={<ListTodosComponent />} />
+
+                        {/* //<AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent}/>  //REACT-5 */}
+                        <Route path="/welcome/:name" element={
+                            <AuthenticatedRoute>
+                                <WelcomeComponentWithParams />
+                            </AuthenticatedRoute>
+                        } />
+
+                        {/* //<AuthenticatedRoute path="/todos" component={ListTodosComponent}/>  //REACT-5 */}
+                        <Route path="/todos" element={
+                            <AuthenticatedRoute>
+                                <ListTodosComponent />
+                            </AuthenticatedRoute>
+                        } />
+
+                        {/* //<AuthenticatedRoute path="/logout" component={LogoutComponent}/>  //REACT-5 */}
+                        <Route path="/logout" element={
+                            <AuthenticatedRoute>
+                                <LogoutComponent />
+                            </AuthenticatedRoute>
+                        } />
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                     <FooterComponent/>
@@ -171,7 +190,7 @@ class ListTodosComponent extends Component {
     render() {
         return (
         <div>
-            <h1>List Todos</h1>
+            <h1>To Do List</h1>
             <div className="container">
                 <table class="table">
                     <thead>
