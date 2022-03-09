@@ -15,6 +15,7 @@ class TodoApp extends Component {
                         <Route path="/" element={<LoginComponentWithNavigation />} />
                         <Route path="/login" element={<LoginComponentWithNavigation />} />
                         <Route path="/welcome/:name" element={<WelcomeComponentWithParams />} />
+                        <Route path="/todos" element={<ListTodosComponent />} />
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                 </Router>
@@ -96,6 +97,50 @@ function ErrorComponent() {
     return <div>An Error Occurred. I don't know what to do! Contact support at abcd-efgh-ijkl</div>
 }
 
+class ListTodosComponent extends Component {
+    
+    constructor(props) {
+        super(props)
+        this.state = {
+            todos : 
+            [
+                { id: 1, description: 'Become a React Expert'},
+                { id: 2, description: 'Learn Web APIs'},
+                { id: 3, description: 'Learn Micronaut Web'}
+            ]
+        }
+    }
+    
+    render() {
+        return (
+        <div>
+            <h1>List Todos</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                    this.state.todos.map (
+                        todo =>
+                        <tr>
+                            <td>{todo.id}</td>
+                            <td>{todo.description}</td>
+                        </tr>
+                    )
+                    }
+                </tbody>
+            </table>
+            
+
+            
+        </div>
+        )
+    }
+}
 
 class WelcomeComponent extends Component {
     render() {
