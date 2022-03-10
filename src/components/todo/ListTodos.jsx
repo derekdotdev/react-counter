@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import TodoDataService from '../../api/todo/TodoDataService'
+import AuthenticationService from './AuthenticationService'
 
 class ListTodosComponent extends Component {
     
@@ -7,13 +9,27 @@ class ListTodosComponent extends Component {
         this.state = {
             todos : 
             [
-                { id: 1, description: 'Become a React Expert', done:false, targetDate: new Date()},
-                { id: 2, description: 'Learn Web APIs', done:false, targetDate: new Date()},
-                { id: 3, description: 'Learn Micronaut Web', done:false, targetDate: new Date()}
+
             ]
+            // Initial hard-coded todos
+            // [
+            //     { id: 1, description: 'Become a React Expert', done:false, targetDate: new Date()},
+            //     { id: 2, description: 'Learn Web APIs', done:false, targetDate: new Date()},
+            //     { id: 3, description: 'Learn Micronaut Web', done:false, targetDate: new Date()}
+            // ]
         }
     }
     
+    componentDidMount() {
+        let username = AuthenticationService.getLoggedInUserName
+        TodoDataService.retrieveAllTodos(username)
+            .then(
+                response => {
+                    this.setState({todos : response.data})
+                }
+            )
+    }
+
     render() {
         return (
         <div>
