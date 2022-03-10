@@ -58,13 +58,13 @@ class TodoComponent extends Component {
             targetDate : values.targetDate
         }
 
-        // if (this.state.id === -1) {
-        //     TodoDataService.createTodo(username, todo)
-        //         .then(() => this.props.navigate('/todos'))
-        // } else {
-        //     TodoDataService.updateTodo(username, this.state.id, todo)
-        //         .then(() => this.props.navigate('/todos'))
-        // }
+        if (this.state.id === -1) {
+            TodoDataService.createTodo(username, todo)
+                .then(() => this.props.navigate('/todos'))
+        } else {
+            TodoDataService.updateTodo(username, this.state.id, todo)
+                .then(() => this.props.navigate('/todos'))
+        }
 
         console.log(values)
     }
