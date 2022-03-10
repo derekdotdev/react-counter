@@ -11,11 +11,11 @@ class TodoComponent extends Component {
 
         this.state = {
             id: this.props.params.id,
-            description : 'Learn Forms',
+            description : 'Learn Forms Now!',
             targetDate : moment(new Date()).format('YYYY-MM-DD')
         }
 
-        // this.onSubmit = this.onSubmit.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
         // this.validate = this.validate.bind(this)
     }
 
@@ -53,25 +53,25 @@ class TodoComponent extends Component {
     //     return errors
     // }
 
-    // onSubmit(values) {
-    //     let username = AuthenticationService.getLoggedInUserName()
+    onSubmit(values) {
+        let username = AuthenticationService.getLoggedInUserName()
 
-    //     let todo = {
-    //         id : this.state.id,
-    //         description : values.description,
-    //         targetDate : values.targetDate
-    //     }
+        let todo = {
+            id : this.state.id,
+            description : values.description,
+            targetDate : values.targetDate
+        }
 
-    //     if (this.state.id === -1) {
-    //         TodoDataService.createTodo(username, todo)
-    //             .then(() => this.props.navigate('/todos'))
-    //     } else {
-    //         TodoDataService.updateTodo(username, this.state.id, todo)
-    //             .then(() => this.props.navigate('/todos'))
-    //     }
+        // if (this.state.id === -1) {
+        //     TodoDataService.createTodo(username, todo)
+        //         .then(() => this.props.navigate('/todos'))
+        // } else {
+        //     TodoDataService.updateTodo(username, this.state.id, todo)
+        //         .then(() => this.props.navigate('/todos'))
+        // }
 
-    //     console.log(values)
-    // }
+        console.log(values)
+    }
 
 
     render() {
