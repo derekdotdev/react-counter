@@ -116,7 +116,7 @@ class ListTodosComponent extends Component {
         //         this.refreshTodos()
         // }
         // )
-        this.props.navigate(`todos/${id}`)
+        this.props.navigate(`/todos/${id}`)
     }
     
 }
