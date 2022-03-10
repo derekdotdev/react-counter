@@ -11,47 +11,43 @@ class TodoComponent extends Component {
 
         this.state = {
             id: this.props.params.id,
-            description : 'Learn Forms Now!',
+            description : '',
             targetDate : moment(new Date()).format('YYYY-MM-DD')
         }
 
         this.onSubmit = this.onSubmit.bind(this)
-        // this.validate = this.validate.bind(this)
-    }
-
-    render() {
-        return <div>Todo Component for id: { this.props.params.id }</div>
+        this.validate = this.validate.bind(this)
     }
     
-    // componentDidMount() {
+    componentDidMount() {
 
-    //     if (this.state.id === -1) {
-    //         return
-    //     }
+        if (this.state.id === -1) {
+            return
+        }
 
-    //     let username = AuthenticationService.getLoggedInUserName()
+        let username = AuthenticationService.getLoggedInUserName()
 
-    //     TodoDataService.retrieveTodo(username, this.state.id)
-    //         .then(response => this.setState({
-    //             description : response.data.description,
-    //             targetDate : moment(response.data.targetDate).format('YYYY-MM-DD')
-    //         }))
-    // }
+        TodoDataService.retrieveTodo(username, this.state.id)
+            .then(response => this.setState({
+                description : response.data.description,
+                targetDate : moment(response.data.targetDate).format('YYYY-MM-DD')
+            }))
+    }
 
-    // validate(values) {
-    //     let errors = {}
-    //     if(!values.description) {
-    //         errors.description = 'Enter a Description'
-    //     } else if (values.description.length < 5) {
-    //         errors.description = 'Enter at least 5 characters in Description'
-    //     }
+    validate(values) {
+        let errors = {}
+        if(!values.description) {
+            errors.description = 'Enter a Description'
+        } else if (values.description.length < 5) {
+            errors.description = 'Enter at least 5 characters in Description'
+        }
 
-    //     if (!moment(values.targetDate).isValid()) {
-    //         errors.targetDate = 'Enter a valid Target Date'
-    //     }
+        if (!moment(values.targetDate).isValid()) {
+            errors.targetDate = 'Enter a valid Target Date'
+        }
 
-    //     return errors
-    // }
+        return errors
+    }
 
     onSubmit(values) {
         let username = AuthenticationService.getLoggedInUserName()
@@ -92,9 +88,9 @@ class TodoComponent extends Component {
                             (props) => (
                                 <Form>
                                     <ErrorMessage name="description" component="div"
-                                        className="alert alert-warning" />
+                                                className="alert alert-warning" />
                                     <ErrorMessage name="targetDate" component="div"
-                                        className="alert alert-warning" />
+                                                className="alert alert-warning" />
                                     <fieldset className="form-group">
                                         <label>Description</label>
                                         <Field className="form-control" type="text" name="description" />
