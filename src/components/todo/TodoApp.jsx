@@ -6,10 +6,11 @@ import AuthenticatedRoute from './AuthenticatedRoute.jsx'
 import { ErrorComponent } from './ErrorComponent.jsx'
 import FooterComponent from './FooterComponent.jsx'
 import HeaderComponent from './HeaderComponent.jsx'
-import ListTodosComponent from './ListTodos.jsx'
+import ListTodosComponent from './ListTodosComponent.jsx'
 import LoginComponent from './LoginComponent.jsx'
 import LogoutComponent from './LogoutComponent.jsx'
 import WelcomeComponent from './WelcomeComponent.jsx'
+import TodoComponent from './TodoComponent.jsx'
 
 
 class TodoApp extends Component {
@@ -19,6 +20,10 @@ class TodoApp extends Component {
         const WelcomeComponentWithParams = withParams(WelcomeComponent)
 
         const HeaderComponentWithNavigation = withNavigation(HeaderComponent)
+
+        const ListTodosComponentWithNavigation = withNavigation(ListTodosComponent)
+
+        const TodoComponentWithParamsAndNavigation = withParams(withNavigation(TodoComponent))
         
         return (
             <div className="TodoApp">
@@ -35,10 +40,16 @@ class TodoApp extends Component {
                             </AuthenticatedRoute>
                         } />
 
+                        <Route path="/todos/:id" element={
+                            <AuthenticatedRoute>
+                                <TodoComponentWithParamsAndNavigation />
+                            </AuthenticatedRoute>
+                        }/>
+                        
                         {/* //<AuthenticatedRoute path="/todos" component={ListTodosComponent}/>  //REACT-5 */}
                         <Route path="/todos" element={
                             <AuthenticatedRoute>
-                                <ListTodosComponent />
+                                <ListTodosComponentWithNavigation />
                             </AuthenticatedRoute>
                         } />
 
@@ -48,6 +59,7 @@ class TodoApp extends Component {
                                 <LogoutComponent />
                             </AuthenticatedRoute>
                         } />
+
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                     <FooterComponent/>
