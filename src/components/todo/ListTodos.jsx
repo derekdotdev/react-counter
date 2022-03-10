@@ -19,7 +19,7 @@ class ListTodosComponent extends Component {
         <div>
             <h1>To Do List</h1>
             <div className="container">
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Description</th>
